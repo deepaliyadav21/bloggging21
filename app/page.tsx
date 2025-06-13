@@ -164,7 +164,7 @@ const trendingTopics = [
 ];
 
 const Categories = [
-  'Science And Teechnology', 'Current Topics', 'Entertainment/Lifestyle', 'Health & Beauty', 'Food/Cooking', 
+  'Science And Technology', 'Current Topics', 'Entertainment/Lifestyle', 'Health & Beauty', 'Food/Cooking', 
   'Astrology', 'Sports', 'Education', 'Others'
 ];
 
@@ -195,11 +195,11 @@ const [activeTab, setActiveTab] = useState("Latest Questions");
             <FaCommentAlt />
             <span>Blogs</span>
           </Link>
-          <Link href="/trending" className="text-white hover:text-blue-600 transition-colors flex items-center space-x-2">
+          <Link href="/gallery" className="text-white hover:text-blue-600 transition-colors flex items-center space-x-2">
             <IoImages className="text-2xl" />
             <span>Gallery</span>
           </Link>
-          <Link href="/leaderboard" className="text-white hover:text-blue-600 transition-colors flex items-center space-x-2">
+          <Link href="/contact" className="text-white hover:text-blue-600 transition-colors flex items-center space-x-2">
             <FaPhoneAlt className="text-xl" />
             <span>Contact Us</span>
           </Link>
@@ -384,7 +384,7 @@ const [activeTab, setActiveTab] = useState("Latest Questions");
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <TrendingUp className="h-5 w-5 text-blue-600" />
-                  <span>Top Disscussion</span>
+                  <span>Top Discussion</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -464,7 +464,7 @@ const [activeTab, setActiveTab] = useState("Latest Questions");
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                   <MessageSquare className="h-5 w-5 text-white" />
                 </div>
-                <span className="text-xl font-bold">ForumHub</span>
+                <span className="text-xl font-bold">LetsDiskuss</span>
               </div>
               <p className="text-gray-400">Building communities through meaningful discussions and shared knowledge.</p>
             </div>
@@ -497,7 +497,7 @@ const [activeTab, setActiveTab] = useState("Latest Questions");
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 LetDiskuss. All rights reserved.</p>
+            <p>&copy; 2024 LetsDiskuss. All rights reserved.</p>
           </div>
         </div>
       </footer>
