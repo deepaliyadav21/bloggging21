@@ -157,6 +157,33 @@ const trendingTopics = [
   'Web3 Development', 'Mental Health', 'Startup Funding', 'UX Design', 'Data Privacy'
 ];
 
+const topContributors = [
+  {
+    id: 1,
+    name: 'Alex Thompson',
+    avatar: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?w=100',
+    points: 5847,
+    badge: 'Legend',
+    rank: 1
+  },
+  {
+    id: 2,
+    name: 'Maria Garcia',
+    avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?w=100',
+    points: 4923,
+    badge: 'Expert',
+    rank: 2
+  },
+  {
+    id: 3,
+    name: 'David Kim',
+    avatar: 'https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?w=100',
+    points: 3764,
+    badge: 'Pro',
+    rank: 3
+  }
+];
+
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
@@ -188,7 +215,7 @@ export default function Home() {
                 <span className="text-white font-bold">Home</span>
               </Link>
               <nav className="hidden md:flex space-x-6">
-                <Link href="/blogs" className="text-white hover:text-blue-300 transition-colors flex items-center space-x-1">
+                <Link href="/categories" className="text-white hover:text-blue-300 transition-colors flex items-center space-x-1">
                   <MessageSquare className="w-4 h-4" />
                   <span>Blogs</span>
                 </Link>
@@ -200,7 +227,7 @@ export default function Home() {
                   <Phone className="w-4 h-4" />
                   <span>Contact Us</span>
                 </Link>
-                <Link href="/write" className="text-white hover:text-blue-300 transition-colors flex items-center space-x-2">
+                <Link href="/writeforus" className="text-white hover:text-blue-300 transition-colors flex items-center space-x-2">
                   <Edit className="w-4 h-4" />
                   <span>Write For Us</span>
                 </Link>
@@ -281,212 +308,328 @@ export default function Home() {
       </div>
 
       {/* Main Layout - Add top margin to account for fixed headers */}
-      <div className="flex pt-32">
-        {/* Left Sidebar */}
-        <div className="w-80 bg-white border-r border-gray-200 h-screen overflow-y-auto fixed left-0 top-32">
-          {/* Become A Blogger Button */}
-          <div className="p-4 border-b border-gray-200">
-            <Button className="w-full bg-teal-700 text-white py-3 px-4 rounded-md font-semibold hover:bg-teal-800 transition-colors flex items-center justify-center space-x-2">
-              <MessageCircle className="w-4 h-4" />
-              <span>Become A Blogger</span>
-            </Button>
-          </div>
+      <div className="pt-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex gap-6">
+            
+            {/* Left Sidebar */}
+            <div className="w-80 flex-shrink-0">
+              <div className="sticky top-36 space-y-6">
+                
+                {/* Become A Blogger Button */}
+                <Card className="border-0 bg-white shadow-sm">
+                  <CardContent className="p-4">
+                    <Button className="w-full bg-teal-700 text-white py-3 px-4 rounded-md font-semibold hover:bg-teal-800 transition-colors flex items-center justify-center space-x-2">
+                      <MessageCircle className="w-4 h-4" />
+                      <span>Become A Blogger</span>
+                    </Button>
+                  </CardContent>
+                </Card>
 
-          {/* Categories Section */}
-          <div className="p-4 border-b border-gray-200">
-            <h3 className="font-semibold text-gray-900 mb-4 flex items-center space-x-2">
-              <div className="w-4 h-4 bg-gray-400 rounded"></div>
-              <span>Category</span>
-            </h3>
-            <div className="space-y-2">
-              {categories.map((category, index) => {
-                const IconComponent = category.icon;
-                return (
-                  <div key={index} className="flex items-center space-x-3 py-2 px-2 hover:bg-gray-50 rounded-md cursor-pointer transition-colors">
-                    <IconComponent className="w-4 h-4 text-gray-600" />
-                    <span className="text-sm text-gray-700">{category.name}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Contest Questions Section */}
-          <div className="p-4 border-b border-gray-200">
-            <h3 className="font-semibold text-gray-900 mb-4 flex items-center space-x-2">
-              <div className="w-4 h-4 bg-gray-400 rounded"></div>
-              <span>Contest Questions</span>
-            </h3>
-            <div className="space-y-3">
-              {contestQuestions.map((question, index) => (
-                <div key={index} className="text-sm text-blue-600 hover:text-blue-800 cursor-pointer transition-colors">
-                  {question}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Find Us Section */}
-          <div className="p-4 border-b border-gray-200">
-            <h3 className="font-semibold text-gray-900 mb-4">Find Us</h3>
-            <div className="grid grid-cols-3 gap-3">
-              {socialLinks.map((social, index) => {
-                const IconComponent = social.icon;
-                return (
-                  <div key={index} className={`${social.color} p-3 rounded-lg flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity`}>
-                    <IconComponent className="w-5 h-5 text-white" />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Footer Links */}
-          <div className="p-4">
-            <div className="flex flex-wrap gap-4 text-xs">
-              {footerLinks.map((link, index) => (
-                <Link key={index} href="#" className="text-blue-600 hover:text-blue-800 transition-colors">
-                  {link}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="flex-1 ml-80 mr-80 bg-gray-50 min-h-screen">
-          <div className="max-w-4xl mx-auto p-6">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Featured Discussions</h2>
-              <Button variant="outline" size="sm">View All</Button>
-            </div>
-
-            {/* Discussions List */}
-            <div className="space-y-4">
-              {featuredDiscussions.map((discussion) => (
-                <Card key={discussion.id} className="group hover:shadow-lg transition-all duration-300 cursor-pointer border-0 bg-white">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <Avatar className="w-12 h-12 ring-2 ring-gray-100">
-                        <AvatarImage src={discussion.author.avatar} alt={discussion.author.name} />
-                        <AvatarFallback>{discussion.author.name[0]}</AvatarFallback>
-                      </Avatar>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center space-x-2 mb-2">
-                          {discussion.isPinned && (
-                            <Badge className="bg-blue-100 text-blue-700 text-xs">
-                              <Star className="w-3 h-3 mr-1" />
-                              Pinned
-                            </Badge>
-                          )}
-                          <Badge variant="outline" className="text-xs">{discussion.category}</Badge>
-                          {discussion.hasNewReplies && (
-                            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                          )}
-                        </div>
-                        <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-2 line-clamp-2">
-                          {discussion.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm mb-3 line-clamp-2">{discussion.excerpt}</p>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-4 text-sm text-gray-500">
-                            <span className="font-medium text-gray-700">{discussion.author.name}</span>
-                            <Badge variant="secondary" className="text-xs">{discussion.author.badge}</Badge>
-                            <div className="flex items-center space-x-1">
-                              <Clock className="w-3 h-3" />
-                              <span>{discussion.createdAt}</span>
-                            </div>
+                {/* Categories Section */}
+                <Card className="border-0 bg-white shadow-sm">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
+                      <div className="w-4 h-4 bg-gray-400 rounded"></div>
+                      <span>Category</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="space-y-2">
+                      {categories.map((category, index) => {
+                        const IconComponent = category.icon;
+                        return (
+                          <div key={index} className="flex items-center space-x-3 py-2 px-2 hover:bg-gray-50 rounded-md cursor-pointer transition-colors">
+                            <IconComponent className="w-4 h-4 text-gray-600" />
+                            <span className="text-sm text-gray-700">{category.name}</span>
                           </div>
-                          <div className="flex items-center space-x-4 text-sm text-gray-500">
-                            <div className="flex items-center space-x-1">
-                              <MessageSquare className="w-4 h-4" />
-                              <span>{discussion.replies}</span>
+                        );
+                      })}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Contest Questions Section */}
+                <Card className="border-0 bg-white shadow-sm">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
+                      <div className="w-4 h-4 bg-gray-400 rounded"></div>
+                      <span>Contest Questions</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="space-y-3">
+                      {contestQuestions.map((question, index) => (
+                        <div key={index} className="text-sm text-blue-600 hover:text-blue-800 cursor-pointer transition-colors">
+                          {question}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Find Us Section */}
+                <Card className="border-0 bg-white shadow-sm">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg font-semibold text-gray-900">Find Us</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="grid grid-cols-3 gap-3">
+                      {socialLinks.map((social, index) => {
+                        const IconComponent = social.icon;
+                        return (
+                          <div key={index} className={`${social.color} p-3 rounded-lg flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity`}>
+                            <IconComponent className="w-5 h-5 text-white" />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Footer Links */}
+                <Card className="border-0 bg-white shadow-sm">
+                  <CardContent className="p-4">
+                    <div className="flex flex-wrap gap-4 text-xs">
+                      {footerLinks.map((link, index) => (
+                        <Link key={index} href="#" className="text-blue-600 hover:text-blue-800 transition-colors">
+                          {link}
+                        </Link>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            {/* Main Content */}
+            <div className="flex-1 min-w-0">
+              {/* Header */}
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">Featured Discussions</h2>
+                <Button variant="outline" size="sm">View All</Button>
+              </div>
+
+              {/* Discussions List */}
+              <div className="space-y-4">
+                {featuredDiscussions.map((discussion) => (
+                  <Card key={discussion.id} className="group hover:shadow-lg transition-all duration-300 cursor-pointer border-0 bg-white">
+                    <CardContent className="p-6">
+                      <div className="flex items-start space-x-4">
+                        <Avatar className="w-12 h-12 ring-2 ring-gray-100">
+                          <AvatarImage src={discussion.author.avatar} alt={discussion.author.name} />
+                          <AvatarFallback>{discussion.author.name[0]}</AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center space-x-2 mb-2">
+                            {discussion.isPinned && (
+                              <Badge className="bg-blue-100 text-blue-700 text-xs">
+                                <Star className="w-3 h-3 mr-1" />
+                                Pinned
+                              </Badge>
+                            )}
+                            <Badge variant="outline" className="text-xs">{discussion.category}</Badge>
+                            {discussion.hasNewReplies && (
+                              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                            )}
+                          </div>
+                          <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-2 line-clamp-2">
+                            {discussion.title}
+                          </h3>
+                          <p className="text-gray-600 text-sm mb-3 line-clamp-2">{discussion.excerpt}</p>
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-4 text-sm text-gray-500">
+                              <span className="font-medium text-gray-700">{discussion.author.name}</span>
+                              <Badge variant="secondary" className="text-xs">{discussion.author.badge}</Badge>
+                              <div className="flex items-center space-x-1">
+                                <Clock className="w-3 h-3" />
+                                <span>{discussion.createdAt}</span>
+                              </div>
                             </div>
-                            <div className="flex items-center space-x-1">
-                              <Eye className="w-4 h-4" />
-                              <span>{discussion.views}</span>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                              <ThumbsUp className="w-4 h-4" />
-                              <span>{discussion.likes}</span>
+                            <div className="flex items-center space-x-4 text-sm text-gray-500">
+                              <div className="flex items-center space-x-1">
+                                <MessageSquare className="w-4 h-4" />
+                                <span>{discussion.replies}</span>
+                              </div>
+                              <div className="flex items-center space-x-1">
+                                <Eye className="w-4 h-4" />
+                                <span>{discussion.views}</span>
+                              </div>
+                              <div className="flex items-center space-x-1">
+                                <ThumbsUp className="w-4 h-4" />
+                                <span>{discussion.likes}</span>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Sidebar */}
+            <div className="w-80 flex-shrink-0">
+              <div className="sticky top-36 space-y-6">
+                
+                {/* Categories Card */}
+                <Card className="border-0 bg-white shadow-sm">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
+                      <TrendingUp className="w-5 h-5 text-blue-600" />
+                      <span>Categories</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="grid grid-cols-2 gap-2 text-sm">
+                      <div className="text-blue-600 hover:text-blue-800 cursor-pointer">Science And Technology</div>
+                      <div className="text-blue-600 hover:text-blue-800 cursor-pointer">Current Topics</div>
+                      <div className="text-blue-600 hover:text-blue-800 cursor-pointer">Entertainment/Lifestyle</div>
+                      <div className="text-blue-600 hover:text-blue-800 cursor-pointer">Health & Beauty</div>
+                      <div className="text-blue-600 hover:text-blue-800 cursor-pointer">Food/Cooking</div>
+                      <div className="text-blue-600 hover:text-blue-800 cursor-pointer">Astrology</div>
+                      <div className="text-blue-600 hover:text-blue-800 cursor-pointer">Sports</div>
+                      <div className="text-blue-600 hover:text-blue-800 cursor-pointer">Education</div>
+                      <div className="text-blue-600 hover:text-blue-800 cursor-pointer">Others</div>
                     </div>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
-          </div>
-        </div>
 
-        {/* Right Sidebar */}
-        <div className="w-80 bg-white h-screen overflow-y-auto fixed right-0 top-32">
-          {/* Top Discussions */}
-          <div className="p-4 border-b border-gray-200">
-            <h3 className="font-semibold text-gray-900 mb-4 flex items-center space-x-2">
-              <div className="w-4 h-4 bg-gray-400 rounded"></div>
-              <span>Top Discussions</span>
-            </h3>
-            <div className="space-y-4">
-              {topDiscussions.map((discussion, index) => (
-                <div key={index} className="flex items-start space-x-2">
-                  <Star className="w-4 h-4 text-yellow-500 mt-1 flex-shrink-0" />
-                  <p className="text-sm text-gray-700 hover:text-blue-600 cursor-pointer transition-colors">
-                    {discussion}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+                {/* Top Discussion Card */}
+                <Card className="border-0 bg-white shadow-sm">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
+                      <TrendingUp className="w-5 h-5 text-blue-600" />
+                      <span>Top Discussion</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="space-y-2 text-sm">
+                      <div className="flex flex-wrap gap-1">
+                        <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-800">Next.js 14</Badge>
+                        <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-800">AI Ethics</Badge>
+                        <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-800">Remote Work</Badge>
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-800">Crypto Regulation</Badge>
+                        <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-800">Climate Tech</Badge>
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-800">Web3 Development</Badge>
+                        <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-800">Mental Health</Badge>
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-800">Startup Funding</Badge>
+                        <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-800">UX Design</Badge>
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-800">Data Privacy</Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
 
-          {/* Picnic Recipes Card */}
-          <div className="p-4">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-              <div className="p-4">
-                <p className="text-sm text-gray-700 mb-4">
-                  Planning a picnic? ???????? Try these 10 super easy and delicious recipes that are perfect for any outdoor vibe. Fresh, fun, and so simple to make!
-                </p>
-              </div>
-              
-              {/* Recipe Image */}
-              <div className="relative">
-                <img 
-                  src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400" 
-                  alt="Picnic recipes" 
-                  className="w-full h-48 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h4 className="text-white font-bold text-lg mb-2">10 Simple Picnic Recipes</h4>
-                  <p className="text-white/90 text-sm">
-                    Check out these 10 easy picnic recipes that are super quick to make and perfect for any outdoor hangout. From yummy appetizers to fresh salads, they'll make your picnic extra tasty!
-                  </p>
-                </div>
-              </div>
+                {/* Top Contributors Card */}
+                <Card className="border-0 bg-white shadow-sm">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
+                      <Users className="w-5 h-5 text-blue-600" />
+                      <span>Top Contributors</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="space-y-3">
+                      {topContributors.map((contributor) => (
+                        <div key={contributor.id} className="flex items-center space-x-3">
+                          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 text-sm font-semibold text-gray-600">
+                            #{contributor.rank}
+                          </div>
+                          <Avatar className="w-8 h-8">
+                            <AvatarImage src={contributor.avatar} alt={contributor.name} />
+                            <AvatarFallback>{contributor.name[0]}</AvatarFallback>
+                          </Avatar>
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm font-medium text-gray-900">{contributor.name}</div>
+                            <div className="text-xs text-gray-500">{contributor.points.toLocaleString()} points</div>
+                          </div>
+                          <Badge variant="outline" className="text-xs">{contributor.badge}</Badge>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
 
-              {/* Navigation */}
-              <div className="p-4 flex items-center justify-between">
-                <button className="flex items-center space-x-1 text-gray-600 hover:text-gray-800 transition-colors">
-                  <ChevronLeft className="w-4 h-4" />
-                  <span className="text-sm">BACK</span>
-                </button>
-                
-                <div className="flex space-x-2">
-                  {[0, 1, 2, 3, 4].map((dot, index) => (
-                    <div 
-                      key={index} 
-                      className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-teal-600' : 'bg-gray-300'}`}
-                    ></div>
-                  ))}
-                </div>
-                
-                <button className="flex items-center space-x-1 text-teal-600 hover:text-teal-700 transition-colors">
-                  <span className="text-sm">NEXT</span>
-                  <ChevronRight className="w-4 h-4" />
-                </button>
+                {/* Top Discussions List */}
+                <Card className="border-0 bg-white shadow-sm">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
+                      <div className="w-4 h-4 bg-gray-400 rounded"></div>
+                      <span>Top Discussions</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="space-y-4">
+                      {topDiscussions.map((discussion, index) => (
+                        <div key={index} className="flex items-start space-x-2">
+                          <Star className="w-4 h-4 text-yellow-500 mt-1 flex-shrink-0" />
+                          <p className="text-sm text-gray-700 hover:text-blue-600 cursor-pointer transition-colors">
+                            {discussion}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Picnic Recipes Card */}
+                <Card className="border-0 bg-white shadow-sm overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="p-4">
+                      <p className="text-sm text-gray-700 mb-4">
+                        Planning a picnic? 🧺🌞 Try these 10 super easy and delicious recipes that are perfect for any outdoor vibe. Fresh, fun, and so simple to make!
+                      </p>
+                    </div>
+                    
+                    {/* Recipe Image */}
+                    <div className="relative">
+                      <img 
+                        src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                        alt="Picnic recipes" 
+                        className="w-full h-48 object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <h4 className="text-white font-bold text-lg mb-2">10 Simple Picnic Recipes</h4>
+                        <p className="text-white/90 text-sm">
+                          Check out these 10 easy picnic recipes that are super quick to make and perfect for any outdoor hangout. From yummy appetizers to fresh salads, they'll make your picnic extra tasty!
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Navigation */}
+                    <div className="p-4 flex items-center justify-between">
+                      <button className="flex items-center space-x-1 text-gray-600 hover:text-gray-800 transition-colors">
+                        <ChevronLeft className="w-4 h-4" />
+                        <span className="text-sm">BACK</span>
+                      </button>
+                      
+                      <div className="flex space-x-2">
+                        {[0, 1, 2, 3, 4].map((dot, index) => (
+                          <div 
+                            key={index} 
+                            className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-teal-600' : 'bg-gray-300'}`}
+                          ></div>
+                        ))}
+                      </div>
+                      
+                      <button className="flex items-center space-x-1 text-teal-600 hover:text-teal-700 transition-colors">
+                        <span className="text-sm">NEXT</span>
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
@@ -494,5 +637,4 @@ export default function Home() {
       </div>
     </div>
   );
-}
 }
